@@ -1,0 +1,242 @@
+<header
+  class="bg-[var(--foreground)] text-white flex justify-between items-center p-4 rounded-lg sticky top-2 z-50 backdrop-blur-sm shadow-lg mx-2 sm:mx-4"
+>
+  <div class="flex items-center gap-4">
+    <a href="/" class="flex items-center gap-3 group" aria-label="Home">
+      <img
+        src="/logo.png"
+        alt=""
+        width="24"
+        height="24"
+        class="bg-white rounded-md transition-transform group-hover:scale-110 shadow-md"
+      />
+      <span class="text-2xl font-bold bg-gradient-to-r from-white to-violet-200 text-transparent bg-clip-text">Majna</span>
+    </a>
+
+    <nav
+      class="hidden md:flex items-center gap-6 ms-6 text-lg"
+      aria-label="Main navigation"
+    >
+      {
+        [
+          ["Features", "#features"],
+          ["Resources", "#resources"],
+          ["Pricing", "#pricing"],
+        ].map(([label, href]) => (
+          <a
+            href={href}
+            class="text-gray-200 hover:text-white transition-colors hover:underline underline-offset-4"
+          >
+            {label}
+          </a>
+        ))
+      }
+    </nav>
+  </div>
+
+  <div class="flex items-center gap-4">
+    <button
+      id="previewButton"
+      class="px-4 py-2 rounded-full bg-white/10 hover:bg-white/20 transition-all duration-300 hidden md:flex items-center gap-2 group"
+      aria-label="Preview product"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 group-hover:scale-110 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+      </svg>
+      Preview
+    </button>
+    <button
+      class="bg-black hover:bg-opacity-70 text-white px-6 py-2 rounded-lg transition-all duration-300 hidden md:block font-medium shadow-md hover:shadow-lg"
+      aria-label="Purchase product"
+    >
+      Purchase now
+    </button>
+
+    <button
+      class="md:hidden flex items-center p-2 hover:bg-white/10 rounded-lg transition-colors"
+      aria-label="Toggle menu"
+      aria-expanded="false"
+      id="menuToggle"
+    >
+      <svg
+        class="w-6 h-6"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M4 6h16M4 12h16m-7 6h7"
+        />
+      </svg>
+    </button>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div
+    id="mobileMenu"
+    class="absolute top-16 right-4 bg-gradient-to-b from-violet-800 to-indigo-900 text-white rounded-lg shadow-xl p-4 transform scale-95 opacity-0 invisible transition-all duration-200 w-64"
+  >
+    <nav class="flex flex-col gap-4" aria-label="Mobile navigation">
+      {
+        [
+          ["Features", "#features"],
+          ["Resources", "#resources"],
+          ["Pricing", "#pricing"],
+        ].map(([label, href]) => (
+          <a href={href} class="hover:text-violet-200 transition-colors text-lg py-2 px-3 rounded-lg hover:bg-white/10">
+            {label}
+          </a>
+        ))
+      }
+      <button
+        class="px-4 py-2 rounded-lg hover:bg-white/10 transition-colors text-lg mt-2"
+        id="mobilePreviewButton"
+      >
+        Preview
+      </button>
+      <button
+        class="bg-white text-violet-900 px-4 py-2 rounded-lg hover:bg-violet-100 transition-colors text-lg font-medium"
+      >
+        Purchase now
+      </button>
+    </nav>
+  </div>
+
+  <!-- Preview Dialog -->
+  <dialog
+    id="previewDialog"
+    class="backdrop:bg-black/50 p-0 rounded-xl shadow-2xl max-w-md w-full m-4 bg-white text-gray-900"
+  >
+    <div class="p-6">
+      <div class="flex justify-between items-start mb-4">
+        <h2 class="text-2xl font-bold text-violet-900">Preview Access</h2>
+        <button
+          id="closeDialog"
+          class="text-gray-500 hover:text-gray-700 transition-colors"
+          aria-label="Close dialog"
+        >
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+
+      <div class="space-y-4">
+
+        <p class="text-red-500 font-semibold">This is a preview of the product. You can't interact with it.</p>
+
+        <p class="text-gray-600">Use these credentials to access the preview:</p>
+
+        <div class="bg-gray-50 p-4 rounded-lg space-y-2">
+          <div class="flex justify-between items-center">
+            <span class="text-gray-600">Email:</span>
+            <code class="bg-white px-3 py-1 rounded text-violet-600 font-mono text-sm">
+              abdelrahmanshaheeen8@gmail.com
+            </code>
+          </div>
+          <div class="flex justify-between items-center">
+            <span class="text-gray-600">Password:</span>
+            <code class="bg-white px-3 py-1 rounded text-violet-600 font-mono text-sm">
+              A10801819.com
+            </code>
+          </div>
+        </div>
+
+        <a
+          href="https://preview.majna.shop"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="block w-full bg-gradient-to-r from-violet-500 to-indigo-600 hover:from-violet-600 hover:to-indigo-700 text-white px-6 py-3 rounded-lg transition-all duration-300 text-center font-medium shadow-md hover:shadow-lg transform hover:-translate-y-0.5 mt-6"
+        >
+          Open Preview
+        </a>
+      </div>
+    </div>
+  </dialog>
+</header>
+
+<script>
+  // Menu functionality
+  const menuToggle = document.getElementById("menuToggle");
+  const mobileMenu = document.getElementById("mobileMenu");
+
+  if (menuToggle && mobileMenu) {
+    menuToggle.addEventListener("click", () => {
+      const isExpanded = menuToggle.getAttribute("aria-expanded") === "true";
+      menuToggle.setAttribute("aria-expanded", (!isExpanded).toString());
+
+      if (isExpanded) {
+        mobileMenu.classList.add("invisible", "opacity-0", "scale-95");
+      } else {
+        mobileMenu.classList.remove("invisible", "opacity-0", "scale-95");
+      }
+    });
+
+    // Close menu on wider screens
+    window.addEventListener("resize", () => {
+      if (window.innerWidth >= 768) {
+        mobileMenu.classList.add("invisible", "opacity-0", "scale-95");
+        menuToggle.setAttribute("aria-expanded", "false");
+      }
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener("click", (event) => {
+      if (
+        !mobileMenu.contains(event.target as Node) &&
+        !menuToggle.contains(event.target as Node) &&
+        menuToggle.getAttribute("aria-expanded") === "true"
+      ) {
+        mobileMenu.classList.add("invisible", "opacity-0", "scale-95");
+        menuToggle.setAttribute("aria-expanded", "false");
+      }
+    });
+  }
+
+  // Dialog functionality
+  const previewDialog = document.getElementById("previewDialog") as HTMLDialogElement;
+  const previewButton = document.getElementById("previewButton");
+  const mobilePreviewButton = document.getElementById("mobilePreviewButton");
+  const closeDialog = document.getElementById("closeDialog");
+
+  if (previewDialog && previewButton && mobilePreviewButton && closeDialog) {
+    const openDialog = () => {
+      previewDialog.showModal();
+      document.body.style.overflow = "hidden";
+    };
+
+    const closeDialogHandler = () => {
+      previewDialog.close();
+      document.body.style.overflow = "";
+    };
+
+    previewButton.addEventListener("click", openDialog);
+    mobilePreviewButton.addEventListener("click", openDialog);
+    closeDialog.addEventListener("click", closeDialogHandler);
+
+    // Close dialog when clicking on backdrop
+    previewDialog.addEventListener("click", (event) => {
+      if (event.target === previewDialog) {
+        closeDialogHandler();
+      }
+    });
+
+    // Close dialog on escape key
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && previewDialog.open) {
+        closeDialogHandler();
+      }
+    });
+  }
+</script>
+
+<style>
+  dialog::backdrop {
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+  }
+</style>

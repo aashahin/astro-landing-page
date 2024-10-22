@@ -1,0 +1,70 @@
+---
+import VideoCard from "../Video.astro";
+import AnimatedBackgroundCard from "../AnimatedBackgroundCard.astro";
+---
+
+<section
+  aria-labelledby="features-heading"
+  class="features-section mx-auto mt-16 px-4"
+>
+  <div class="grid md:grid-cols-2 gap-8 items-start">
+    <div class="space-y-6">
+      <h2 id="features-heading" class="text-4xl font-bold text-stone-100">
+        Powerful Page Builder
+      </h2>
+      <ul class="space-y-4" role="list">
+        <li class="feature-item">
+          <h3 class="text-xl font-semibold text-stone-100 mb-2">
+            Drag-and-Drop Interface
+          </h3>
+          <p class="text-stone-300">
+            Create professional-looking pages without any coding knowledge. Our
+            intuitive interface lets you build exactly what you envision.
+          </p>
+        </li>
+        <li class="feature-item">
+          <h3 class="text-xl font-semibold text-stone-100 mb-2">
+            Blocks and Patterns
+          </h3>
+          <p class="text-stone-300">
+            Create blocks and share them across your site with our patterns
+            feature. Save time and maintain consistency with reusable blocks.
+          </p>
+        </li>
+        <li class="feature-item">
+          <h3 class="text-xl font-semibold text-stone-100 mb-2">
+            Real-Time Preview
+          </h3>
+          <p class="text-stone-300">
+            See your changes instantly with our live preview feature. Test your
+            design across different devices with one click.
+          </p>
+        </li>
+      </ul>
+      <div class="mt-2">
+        <button
+          class="px-6 py-3 bg-[var(--foreground)] font-bold text-white rounded-md hover:opacity-90 focus:ring-2 focus:ring-offset-2 focus:ring-[var(--foreground)] focus:outline-none transition-all duration-300"
+          aria-label="Try the page builder demo"
+        >
+          Try Page Builder
+        </button>
+      </div>
+    </div>
+
+    <!-- Video Section -->
+    <div>
+      <AnimatedBackgroundCard>
+        <VideoCard
+          thumbnailUrl="https://pub-5e2c8cecebcf4985b55f09741b2f1382.r2.dev/73_1x_shots_so.webp"
+          videoUrl="https://www.youtube.com/watch?v=ST5zmw0vLOQ"
+          title="Page Builder Overview"
+        />
+        <div slot="footer" class="text-center text-stone-300">
+          <p>
+            Create stunning pages in minutes with our drag-and-drop interface.
+          </p>
+        </div>
+      </AnimatedBackgroundCard>
+    </div>
+  </div>
+</section>

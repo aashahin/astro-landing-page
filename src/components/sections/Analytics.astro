@@ -1,0 +1,201 @@
+---
+import VideoCard from "../Video.astro";
+import AnimatedBackgroundCard from "../AnimatedBackgroundCard.astro";
+---
+
+<section aria-labelledby="analytics-heading" class="mx-auto mt-32 px-4">
+  <div class="text-center mb-16">
+    <h2 id="analytics-heading" class="text-4xl font-bold text-stone-100 mb-4">
+      Powerful Analytics Dashboard
+    </h2>
+    <p class="text-xl text-stone-300 max-w-3xl mx-auto">
+      Make data-driven decisions with comprehensive insights into your store's
+      performance
+    </p>
+  </div>
+
+  <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+    <!-- Sales Analytics Card -->
+    <div class="feature-item">
+      <h3 class="text-xl font-semibold text-stone-100 mb-4">
+        Sales Performance
+      </h3>
+      <ul class="space-y-3 text-stone-300">
+        <li class="flex items-start">
+          <span class="inline-block w-2 h-2 mt-2 mr-2 bg-violet-500 rounded-full"
+          ></span>
+          Orders by year, month, and week
+        </li>
+        <li class="flex items-start">
+          <span class="inline-block w-2 h-2 mt-2 mr-2 bg-violet-500 rounded-full"
+          ></span>
+          Revenue trends and projections
+        </li>
+        <li class="flex items-start">
+          <span class="inline-block w-2 h-2 mt-2 mr-2 bg-violet-500 rounded-full"
+          ></span>
+          Average order value tracking
+        </li>
+      </ul>
+    </div>
+
+    <!-- Geographic Insights Card -->
+    <div class="feature-item">
+      <h3 class="text-xl font-semibold text-stone-100 mb-4">
+        Geographic Insights
+      </h3>
+      <ul class="space-y-3 text-stone-300">
+        <li class="flex items-start">
+          <span class="inline-block w-2 h-2 mt-2 mr-2 bg-violet-500 rounded-full"
+          ></span>
+          Sales distribution by country
+        </li>
+        <li class="flex items-start">
+          <span class="inline-block w-2 h-2 mt-2 mr-2 bg-violet-500 rounded-full"
+          ></span>
+          Regional performance metrics
+        </li>
+        <li class="flex items-start">
+          <span class="inline-block w-2 h-2 mt-2 mr-2 bg-violet-500 rounded-full"
+          ></span>
+          Location-based customer behavior
+        </li>
+      </ul>
+    </div>
+
+    <!-- Customer Behavior Card -->
+    <div class="feature-item">
+      <h3 class="text-xl font-semibold text-stone-100 mb-4">
+        Customer Behavior
+      </h3>
+      <ul class="space-y-3 text-stone-300">
+        <li class="flex items-start">
+          <span class="inline-block w-2 h-2 mt-2 mr-2 bg-violet-500 rounded-full"
+          ></span>
+          Purchase patterns and frequency
+        </li>
+        <li class="flex items-start">
+          <span class="inline-block w-2 h-2 mt-2 mr-2 bg-violet-500 rounded-full"
+          ></span>
+          Customer lifetime value
+        </li>
+        <li class="flex items-start">
+          <span class="inline-block w-2 h-2 mt-2 mr-2 bg-violet-500 rounded-full"
+          ></span>
+          Loyalty and retention metrics
+        </li>
+      </ul>
+    </div>
+
+    <!-- Traffic Sources Card -->
+    <div class="feature-item">
+      <h3 class="text-xl font-semibold text-stone-100 mb-4">
+        Traffic Analysis
+      </h3>
+      <ul class="space-y-3 text-stone-300">
+        <li class="flex items-start">
+          <span class="inline-block w-2 h-2 mt-2 mr-2 bg-violet-500 rounded-full"
+          ></span>
+          Referral source tracking
+        </li>
+        <li class="flex items-start">
+          <span class="inline-block w-2 h-2 mt-2 mr-2 bg-violet-500 rounded-full"
+          ></span>
+          Search engine performance
+        </li>
+      </ul>
+    </div>
+
+    <!-- Technical Insights Card -->
+    <div class="feature-item">
+      <h3 class="text-xl font-semibold text-stone-100 mb-4">
+        Technical Performance
+      </h3>
+      <ul class="space-y-3 text-stone-300">
+        <li class="flex items-start">
+          <span class="inline-block w-2 h-2 mt-2 mr-2 bg-violet-500 rounded-full"
+          ></span>
+          Page load times and optimization
+        </li>
+        <li class="flex items-start">
+          <span class="inline-block w-2 h-2 mt-2 mr-2 bg-violet-500 rounded-full"
+          ></span>
+          Browser and device analytics
+        </li>
+        <li class="flex items-start">
+          <span class="inline-block w-2 h-2 mt-2 mr-2 bg-violet-500 rounded-full"
+          ></span>
+          Error tracking and monitoring
+        </li>
+      </ul>
+    </div>
+
+    <!-- Product Analytics Card -->
+    <div class="feature-item">
+      <h3 class="text-xl font-semibold text-stone-100 mb-4">
+        Product Insights
+      </h3>
+      <ul class="space-y-3 text-stone-300">
+        <li class="flex items-start">
+          <span class="inline-block w-2 h-2 mt-2 mr-2 bg-violet-500 rounded-full"
+          ></span>
+          Best and worst performers
+        </li>
+        <li class="flex items-start">
+          <span class="inline-block w-2 h-2 mt-2 mr-2 bg-violet-500 rounded-full"
+          ></span>
+          Category performance metrics
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Analytics Dashboard Preview -->
+  <div class="grid md:grid-cols-2 gap-8 items-center">
+    <div>
+      <AnimatedBackgroundCard>
+        <VideoCard
+          thumbnailUrl="https://pub-5e2c8cecebcf4985b55f09741b2f1382.r2.dev/926_1x_shots_so.webp"
+          videoUrl="https://www.youtube.com/watch?v=92te547ts_A"
+          title="Analytics Dashboard Demo"
+        />
+        <div slot="footer" class="text-center text-stone-300">
+          <p>Comprehensive analytics dashboard for data-driven decisions</p>
+        </div>
+      </AnimatedBackgroundCard>
+    </div>
+
+    <div class="space-y-6">
+      <h3 class="text-3xl font-bold text-stone-100">Turn Data Into Growth</h3>
+      <div class="space-y-4">
+        <div class="feature-item">
+          <h4 class="text-xl font-semibold text-stone-100 mb-2">
+            AI-Powered Assistance
+          </h4>
+          <p class="text-stone-300">
+            Get AI-powered analysis of your sales trends and customer behavior
+            patterns.
+          </p>
+        </div>
+        <div class="feature-item">
+          <h4 class="text-xl font-semibold text-stone-100 mb-2">
+            Custom Reports
+          </h4>
+          <p class="text-stone-300">
+            Create and schedule customized reports for the metrics that matter
+            most to your business.
+          </p>
+        </div>
+        <div class="feature-item">
+          <h4 class="text-xl font-semibold text-stone-100 mb-2">
+            Real-Time Monitoring
+          </h4>
+          <p class="text-stone-300">
+            Track key performance indicators in real-time and receive alerts for
+            important changes.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

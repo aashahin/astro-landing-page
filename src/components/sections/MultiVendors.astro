@@ -1,0 +1,56 @@
+---
+import VideoCard from "../Video.astro";
+import AnimatedBackgroundCard from "../AnimatedBackgroundCard.astro";
+---
+
+<section aria-labelledby="marketplace-heading" class="mx-auto mt-32 px-4">
+  <div class="grid md:grid-cols-2 gap-8 items-start">
+    <div class="space-y-6">
+      <h2 id="marketplace-heading" class="text-4xl font-bold text-stone-100">
+        Multi-Vendor Marketplace
+      </h2>
+      <ul class="space-y-4" role="list">
+        <li class="feature-item">
+          <h3 class="text-xl font-semibold text-stone-100 mb-2">
+            Vendor Management
+          </h3>
+          <p class="text-stone-300">
+            Scale from a single store to a thriving marketplace with
+            comprehensive vendor tools and management features.
+          </p>
+        </li>
+        <li class="feature-item">
+          <h3 class="text-xl font-semibold text-stone-100 mb-2">
+            Shipping & Coupons
+          </h3>
+          <p class="text-stone-300">
+            Offer flexible shipping options and coupon codes from vendor
+            dashboard to attract more customers.
+          </p>
+        </li>
+        <li class="feature-item">
+          <h3 class="text-xl font-semibold text-stone-100 mb-2">
+            Vendor Communication
+          </h3>
+          <p class="text-stone-300">
+            Enable direct messaging and ticketing between vendors and customers
+            for seamless communication.
+          </p>
+        </li>
+      </ul>
+    </div>
+
+    <div>
+      <AnimatedBackgroundCard>
+        <VideoCard
+          thumbnailUrl="https://pub-5e2c8cecebcf4985b55f09741b2f1382.r2.dev/693shots_so.webp"
+          videoUrl="https://www.youtube.com/watch?v=A80eXRlsr2E"
+          title="Marketplace Features"
+        />
+        <div slot="footer" class="text-center text-stone-300">
+          <p>Build and manage your own marketplace with multiple vendors</p>
+        </div>
+      </AnimatedBackgroundCard>
+    </div>
+  </div>
+</section>

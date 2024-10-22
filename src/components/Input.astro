@@ -1,0 +1,13 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+interface Props extends HTMLAttributes<"input"> {}
+
+const { props } = Astro;
+---
+
+<input
+  class={"px-4 py-3 rounded-md border border-[var(--foreground)] focus:outline-none focus:border-stone-600 focus:ring-2 focus:ring-stone-600 transition-colors duration-300" +
+    (props.class ? ` ${props.class}` : "")}
+  {...props as Props}
+/>

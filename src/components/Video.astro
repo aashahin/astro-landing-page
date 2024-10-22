@@ -1,0 +1,159 @@
+---
+import "../styles/video.css";
+
+type Props = {
+  thumbnailUrl: string;
+  videoUrl: string;
+  title?: string;
+};
+
+const { thumbnailUrl, videoUrl, title } = Astro.props;
+
+const getYoutubeId = (url: string) => {
+  const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+  const match = url.match(regExp);
+  return match && match[2].length === 11 ? match[2] : null;
+};
+
+const videoId = getYoutubeId(videoUrl);
+if (!videoId) {
+  console.error("Invalid YouTube URL");
+}
+---
+
+<div
+  class="video-card"
+  data-video-id={videoId}
+  data-width="640"
+  data-height="315"
+>
+  <button class="video-trigger" aria-label="Play video">
+    <div class="thumbnail-container">
+      <img
+        src={thumbnailUrl}
+        alt={title || "Video thumbnail"}
+        class="thumbnail"
+        loading="lazy"
+      />
+      <div class="overlay">
+        <div class="play-button-wrapper">
+          <div class="play-button-outer">
+            <div class="play-button-inner">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                class="play-icon"
+              >
+                <path
+                  d="M8 5.14v14.72a1 1 0 001.5.86l11-7.36a1 1 0 000-1.72l-11-7.36A1 1 0 008 5.14z"
+                ></path>
+              </svg>
+            </div>
+          </div>
+        </div>
+        {title && <div class="video-title">{title}</div>}
+      </div>
+    </div>
+  </button>
+
+  <dialog class="video-modal" aria-hidden="true">
+    <div class="modal-content">
+      <button class="close-button" aria-label="Close modal">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+          width="24"
+          height="24"
+        >
+          <path
+            d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+          ></path>
+        </svg>
+      </button>
+      <div class="iframe-container"></div>
+    </div>
+  </dialog>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll(".video-card").forEach((card) => {
+      const trigger = card.querySelector(".video-trigger");
+      const modal = card.querySelector(".video-modal") as HTMLDialogElement;
+      const closeButton = card.querySelector(".close-button");
+      const iframeContainer = card.querySelector(".iframe-container");
+      const modalContent = card.querySelector(".modal-content");
+      const videoId = card.getAttribute("data-video-id");
+      const width = card.getAttribute("data-width") || "640";
+      const height = card.getAttribute("data-height") || "315";
+
+      if (
+        !trigger ||
+        !modal ||
+        !closeButton ||
+        !iframeContainer ||
+        !modalContent ||
+        !videoId
+      )
+        return;
+
+      if (modal.hasAttribute("open")) {
+        modal.close();
+      }
+
+      const openModal = () => {
+        modal.showModal();
+        modal.setAttribute("aria-hidden", "false");
+        document.body.style.overflow = "hidden";
+        if (!iframeContainer.innerHTML) {
+          iframeContainer.innerHTML = `<iframe
+            src="https://www.youtube.com/embed/${videoId}?autoplay=1"
+            title="YouTube video player"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            width="${width}"
+            height="${height}"
+            allowfullscreen
+          ></iframe>`;
+        } else {
+          const iframe = iframeContainer.querySelector("iframe");
+          if (iframe) {
+            iframe.src += "?autoplay=1";
+          }
+        }
+      };
+
+      const closeModal = () => {
+        modal.close();
+        modal.setAttribute("aria-hidden", "true");
+        document.body.style.overflow = "";
+        const iframe = iframeContainer.querySelector("iframe");
+        if (iframe) {
+          iframe.src = iframe.src.split("?")[0];
+        }
+      };
+
+      trigger.addEventListener("click", openModal);
+      closeButton.addEventListener("click", closeModal);
+
+      modal.addEventListener("click", (e) => {
+        const rect = modalContent.getBoundingClientRect();
+        const isInDialog =
+          e.clientX >= rect.left &&
+          e.clientX <= rect.right &&
+          e.clientY >= rect.top &&
+          e.clientY <= rect.bottom;
+        if (!isInDialog) {
+          closeModal();
+        }
+      });
+
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && modal.open) {
+          closeModal();
+        }
+      });
+    });
+  });
+</script>

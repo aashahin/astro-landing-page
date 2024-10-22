@@ -1,0 +1,52 @@
+---
+import Input from "../Input.astro";
+---
+
+<div class="text-start mt-8 space-y-6 px-4 mb-12">
+  <section aria-labelledby="hero-heading">
+    <h1
+      id="hero-heading"
+      class="text-5xl md:text-7xl font-bold text-stone-100 leading-tight"
+    >
+      AI-Powered E-Commerce Platform
+    </h1>
+    <p
+      class="text-lg md:text-2xl text-stone-300 md:w-2/3 leading-relaxed max-w-prose"
+    >
+      Transform your online business with Majna, the next-generation e-commerce
+      platform that combines power with simplicity. Built to replace traditional
+      solutions, Majna offers everything you need to create, manage, and scale
+      your online store or marketplace.
+    </p>
+  </section>
+
+  <section aria-labelledby="signup-heading" class="mt-6">
+    <h2 id="signup-heading" class="text-lg md:text-xl text-stone-300">
+      Sign up now to get a <span class="font-bold text-amber-500"
+        >50% off discount code!</span
+      >
+    </h2>
+    <form
+      class="mt-4 flex flex-col sm:flex-row gap-2"
+      aria-label="Email signup form"
+      novalidate
+    >
+      <Input
+        type="email"
+        name="email"
+        id="email"
+        placeholder="Enter your email address"
+        required
+        aria-required="true"
+        aria-label="Email address"
+        class="w-full md:w-1/3 me-2"
+      />
+      <button
+        type="submit"
+        class="px-6 py-3 bg-[var(--foreground)] font-bold text-white rounded-md hover:opacity-90 focus:ring-2 focus:ring-offset-2 focus:ring-[var(--foreground)] focus:outline-none transition-all duration-300"
+      >
+        Get Discount Code
+      </button>
+    </form>
+  </section>
+</div>
