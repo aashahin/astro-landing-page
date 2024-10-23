@@ -23,10 +23,11 @@ import Input from "../Input.astro";
   <section aria-labelledby="signup-heading" class="mt-6">
     <h2 id="signup-heading" class="text-lg md:text-xl text-stone-300">
       Sign up now to get a <span class="font-bold text-amber-500"
-        >50% off discount code!</span
+        >30% off discount code!</span
       >
     </h2>
     <form
+      id="newsletter-form"
       class="mt-4 flex flex-col sm:flex-row gap-2"
       aria-label="Email signup form"
       novalidate
@@ -48,5 +49,129 @@ import Input from "../Input.astro";
         Get Discount Code
       </button>
     </form>
+    <p id="form-error" class="mt-2 text-red-500 hidden"></p>
+    <p id="form-success" class="mt-2 text-green-500 hidden"></p>
   </section>
 </div>
+
+<!-- Discount Modal -->
+<dialog
+  id="discountModal"
+  class="backdrop:bg-black/50 p-0 rounded-xl shadow-2xl max-w-md w-full m-4 bg-white text-gray-900"
+>
+  <div class="p-6">
+    <div class="flex justify-between items-start mb-4">
+      <h2 class="text-2xl font-bold text-violet-900">Your Discount Code</h2>
+      <button
+        id="closeModal"
+        class="text-gray-500 hover:text-gray-700 transition-colors"
+        aria-label="Close modal"
+      >
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+
+    <div class="space-y-4">
+      <p class="text-gray-600">Thanks for subscribing! Click the button below to claim your 30% discount:</p>
+
+      <a
+        href="https://ashahin.gumroad.com/l/majna/ty1b18k"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="block w-full bg-gradient-to-r from-violet-500 to-indigo-600 hover:from-violet-600 hover:to-indigo-700 text-white px-6 py-3 rounded-lg transition-all duration-300 text-center font-medium shadow-md hover:shadow-lg transform hover:-translate-y-0.5 mt-6"
+      >
+        Claim Your 30% Discount
+      </a>
+    </div>
+  </div>
+</dialog>
+
+<style>
+  dialog::backdrop {
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+  }
+</style>
+
+<script>
+  const form = document.getElementById('newsletter-form') as HTMLFormElement;
+  const emailInput = document.getElementById('email') as HTMLInputElement;
+  const errorMessage = document.getElementById('form-error') as HTMLParagraphElement;
+  const successMessage = document.getElementById('form-success') as HTMLParagraphElement;
+  const discountModal = document.getElementById('discountModal') as HTMLDialogElement;
+  const closeModal = document.getElementById('closeModal');
+
+  if (form && emailInput && errorMessage && successMessage && discountModal && closeModal) {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      // Reset messages
+      errorMessage.classList.add('hidden');
+      successMessage.classList.add('hidden');
+
+      const email = emailInput.value;
+
+      if (!email) {
+        errorMessage.textContent = 'Please enter your email address.';
+        errorMessage.classList.remove('hidden');
+        return;
+      }
+
+      // Check if the email is valid
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailPattern.test(email)) {
+        errorMessage.textContent = 'Please enter a valid email address.';
+        errorMessage.classList.remove('hidden');
+        return;
+      }
+
+      try {
+        const response = await fetch(`https://majna.abshahin.workers.dev/subscribe?email=${encodeURIComponent(email)}`, {
+          method: 'POST',
+        });
+
+        const data = await response.json();
+
+        if (data.status === 'success') {
+          successMessage.textContent = data.message;
+          successMessage.classList.remove('hidden');
+          form.reset();
+
+          // Show discount modal
+          discountModal.showModal();
+          document.body.style.overflow = 'hidden';
+        } else {
+          errorMessage.textContent = data.message || 'An error occurred. Please try again.';
+          errorMessage.classList.remove('hidden');
+        }
+      } catch (error) {
+        errorMessage.textContent = 'An error occurred. Please try again.';
+        errorMessage.classList.remove('hidden');
+      }
+    });
+
+    // Modal close functionality
+    const closeModalHandler = () => {
+      discountModal.close();
+      document.body.style.overflow = '';
+    };
+
+    closeModal.addEventListener('click', closeModalHandler);
+
+    // Close modal when clicking on backdrop
+    discountModal.addEventListener('click', (event) => {
+      if (event.target === discountModal) {
+        closeModalHandler();
+      }
+    });
+
+    // Close modal on escape key
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && discountModal.open) {
+        closeModalHandler();
+      }
+    });
+  }
+</script>

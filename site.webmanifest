@@ -1,0 +1,15 @@
+{
+  "short_name": "Majna",
+  "name": "Majna - AI-Powered E-Commerce Platform",
+  "icons": [
+    {
+      "src": "/logo.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#6c48c5",
+  "background_color": "#000000"
+}
